@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragment.MyDialogFragment"
+    android:backgroundTint="@color/colorPrimary">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:id="@+id/textSample"
+            android:text="Your Name"
+            android:textColor="#000"
+            android:textSize="18dp" />
+        
+        
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:id="@+id/EnternameE"
+            android:hint="Enter Your Name"
+            android:maxLength="10"
+            />
+
+        <Spinner
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerFont"
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+
+        </Spinner>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_marginTop="10dp"
+
+    >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show"
+            android:padding="5dp"
+            android:id="@+id/showB"
+            android:backgroundTint="#00203F"
+            android:textColor="#ADEFD1"
+
+
+            />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ok"
+        android:padding="5dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#00203F"
+        android:backgroundTint="#ADEFD1"
+
+        android:id="@+id/okieButton"
+        />
+
+</RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

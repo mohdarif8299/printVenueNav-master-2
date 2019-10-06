@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragment.CardFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#fff"
+            android:paddingHorizontal="14dp"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true">
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:id="@+id/card01"
+                    android:background="@drawable/border">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c1"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginLeft="@dimen/image_padding">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:id="@+id/image1"
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c2"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="55dp">
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c1"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginLeft="@dimen/image_padding">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c2"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="55dp"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c3"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginLeft="@dimen/image_padding">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c3"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="55dp">
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c1"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:background="@drawable/border"
+                    android:layout_marginLeft="@dimen/image_padding">
+
+                    <android.support.v7.widget.AppCompatImageView
+                        android:layout_width="156dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:background="@drawable/c2"
+                        android:outlineProvider="background"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@drawable/border">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mini Business Cards "
+                            android:padding="@dimen/image_padding"
+                            android:textSize="@dimen/textsize"
+                            android:layout_gravity="center"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/image_padding"
+                            android:paddingRight="@dimen/image_padding">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rs. 499.00"
+                                android:textColor="#000"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/textsize"
+                                android:fontFamily="@string/font"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-17%"
+                                android:textColor="#FF0521"
+                                android:textSize="@dimen/textsize"
+                                android:layout_gravity="right|end"
+                                android:layout_marginLeft="55dp"
+                                android:fontFamily="@string/font"
+                                android:layout_marginBottom="@dimen/image_padding"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>

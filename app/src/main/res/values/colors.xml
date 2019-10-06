@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#475A96</color>
+    <color name="colorPrimary">#303F9F</color>
+    <color name="colorAccent">#FF7226</color>
+
+    <color name="dividerColor">#DADADA</color>
+    <color name="list_item_title">#000000</color>
+    <color name="list_group_title">#808080</color>
+    <color name="white">#fff</color>
+    <color name="black">#000</color>
+    <color name="grey">#fb1b1a1a</color>
+    <color name="green">#029585</color>
+    <color name="loginbtcolor">#eeeeee</color>
+</resources>

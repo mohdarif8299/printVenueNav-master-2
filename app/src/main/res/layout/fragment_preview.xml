@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragment.PreviewFragment"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/preview"
+        android:background="@drawable/examplepen">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="22dp"
+            android:text=""
+            android:textColor="#fff"
+            android:padding="5dp"
+
+            android:textSize="11dp"
+            android:layout_marginTop="90dp"
+            android:textAlignment="center"
+            android:id="@+id/displayName2"
+            android:layout_marginLeft="90dp"/>
+    </RelativeLayout>
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+</RelativeLayout>
