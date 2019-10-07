@@ -9,8 +9,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Cache;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Network;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Helper.SpacesItemDecoration;
@@ -26,6 +34,7 @@ public class PenDrive extends Fragment {
     RecyclerView recyclerView;
     List<Items> list;
     ProgressBar progressBar;
+    RequestQueue requestQueue;
     private static String URL_PENDRIVES="https://colorpress.000webhostapp.com/vistaprint/Authentication/pendrives.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +50,10 @@ public class PenDrive extends Fragment {
         return view;
     }
     public void loadItems(){
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(),1024*1024*5);
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache,network);
+        requestQueue.start();
         progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PENDRIVES,
                 response -> {
@@ -64,8 +77,19 @@ public class PenDrive extends Fragment {
                 },error->
                 Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show()
         );
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(getContext()).add(stringRequest);
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError { }
+        });
+       requestQueue.add(stringRequest);
         progressBar.setVisibility(View.GONE);
     }
 }

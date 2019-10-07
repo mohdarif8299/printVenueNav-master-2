@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -42,6 +43,7 @@ import com.example.myapplication.Fragment.PenDrive;
 import com.example.myapplication.Fragment.PensFragment;
 import com.example.myapplication.Helper.FragmentnavigationManager;
 import com.example.myapplication.Interface.NavigationManager;
+import com.example.myapplication.PreferenceManager.MyPreference;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -197,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        if (sharedpreferences.contains(Email)) {
+//            email.setText(sharedpreferences.getString(Email, ""));
+//        }
         ft = getSupportFragmentManager().beginTransaction();
         mDrawerLayout = findViewById(R.id.drawer_layout);
         mActivityTitle = getTitle().toString();
@@ -215,13 +220,16 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("ColorPress");
         TextView sign = findViewById(R.id.signin);
-        sign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if(new MyPreference(getApplicationContext()).isUserLogedOut()) {
+            sign.setOnClickListener(v->{
                 Intent intent = new Intent(MainActivity.this, LoginSignUpMain.class);
                 startActivity(intent);
-            }
-        });
+            });
+        }
+        else {
+            sign.setText("Hello  "+new MyPreference(getApplicationContext()).getName());
+            sign.setEnabled(false);
+        }
     }
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {

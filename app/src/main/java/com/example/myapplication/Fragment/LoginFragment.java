@@ -1,5 +1,6 @@
 package com.example.myapplication.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -23,6 +24,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.myapplication.MainActivity;
+import com.example.myapplication.PreferenceManager.MyPreference;
 import com.example.myapplication.R;
 
 import org.json.JSONArray;
@@ -37,7 +40,6 @@ public class LoginFragment extends Fragment {
     EditText email,password;
     Button login;
     ProgressBar progressBar;
-    SharedPreferences pref;
     static String URL_LOGIN="https://colorpress.000webhostapp.com/vistaprint/Authentication/login.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +49,6 @@ public class LoginFragment extends Fragment {
         email = view.findViewById(R.id.email);
         login = view.findViewById(R.id.login);
         progressBar = view.findViewById(R.id.progress);
-        pref = getActivity().getSharedPreferences("user_credentials", 0); // 0 - for private mode
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,10 +85,9 @@ public class LoginFragment extends Fragment {
                             JSONObject jsonObject1 = jsonArray.getJSONObject(i);
                             String name = jsonObject1.getString("name");
                             String email = jsonObject1.getString("email");
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("name",name);
-                            editor.commit();
-                            Toast.makeText(getContext(),"Committed",Toast.LENGTH_SHORT).show();
+                           new MyPreference(getActivity()).saveLoginDetails(name,email,userpassword);
+                           startActivity(new Intent(getActivity(), MainActivity.class));
+                           getActivity().finish();
                             progressBar.setVisibility(View.GONE);
                         }
                         email.setText("");

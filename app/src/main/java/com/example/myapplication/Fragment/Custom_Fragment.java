@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.Custom_Item_Adapter;
@@ -76,9 +78,19 @@ public class Custom_Fragment extends Fragment {
                 },error->
                 Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show()
         );
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        Volley.newRequestQueue(getContext()).add(stringRequest);
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError { }
+        });
+      Volley.newRequestQueue(getContext()).add(stringRequest);
         progressBar.setVisibility(View.GONE);
     }
 }

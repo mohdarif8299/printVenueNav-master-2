@@ -1,4 +1,5 @@
 package com.example.myapplication.Fragment;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,17 +8,25 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Cache;
+import com.android.volley.Network;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Helper.SpacesItemDecoration;
 import com.example.myapplication.Items;
 import com.example.myapplication.ItemsAdapter;
+import com.example.myapplication.PreferenceManager.MyPreference;
 import com.example.myapplication.R;
 import com.smarteist.autoimageslider.DefaultSliderView;
 import com.smarteist.autoimageslider.IndicatorAnimations;
@@ -36,6 +45,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView,recyclerView1;
     List<Items> list,list1,list2;
     ProgressBar progressBar;
+    RequestQueue requestQueue;
     // SwipeRefreshLayout swipeRefreshLayout;
     private static String URL_IMAGE_SLIDER="https://colorpress.000webhostapp.com/vistaprint/Authentication/image_slider.php";
     private static String URL_TRENDING="https://colorpress.000webhostapp.com/vistaprint/Authentication/trending_products.php";
@@ -103,6 +113,10 @@ public class HomeFragment extends Fragment {
         return view;
     }
     public void loadItems(){
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(),1024*1024*5);
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache,network);
+        requestQueue.start();
         progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_IMAGE_SLIDER,
                 response -> {
@@ -123,11 +137,26 @@ public class HomeFragment extends Fragment {
                 },error->
                 Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show()
         );
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        Volley.newRequestQueue(getActivity()).add(stringRequest);
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError { }
+        });
+       requestQueue.add(stringRequest);
         progressBar.setVisibility(View.GONE);
     }
     public void trending_products(){
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(),1024*1024*5);
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache,network);
+        requestQueue.start();
         progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_TRENDING,
                 response -> {
@@ -147,12 +176,26 @@ public class HomeFragment extends Fragment {
                 },error->
                 Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show()
         );
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        Volley.newRequestQueue(getContext()).add(stringRequest);
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError { }
+        });
+        requestQueue.add(stringRequest);
         progressBar.setVisibility(View.GONE);
     }
     public void office_products(){
+        Cache cache = new DiskBasedCache(getActivity().getCacheDir(),1024*1024*5);
+        Network network = new BasicNetwork(new HurlStack());
+        requestQueue = new RequestQueue(cache,network);
+        requestQueue.start();
         progressBar.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_OFFICE_PRODUCTS,
                 response -> {
@@ -172,9 +215,19 @@ public class HomeFragment extends Fragment {
                 },error->
                 Toast.makeText(getActivity(),error.toString(),Toast.LENGTH_SHORT).show()
         );
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
-        Volley.newRequestQueue(getContext()).add(stringRequest);
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+            @Override
+            public void retry(VolleyError error) throws VolleyError { }
+        });
+        requestQueue.add(stringRequest);
         progressBar.setVisibility(View.GONE);
     }
 }
