@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Cache;
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,22 +19,20 @@ import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Helper.SpacesItemDecoration;
 import com.example.myapplication.Items;
-import com.example.myapplication.ItemsAdapter;
+import com.example.myapplication.Adapter.ItemsAdapter;
 import com.example.myapplication.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-public class PenDrive extends Fragment {
+public class ProductsFragments extends Fragment {
     RecyclerView recyclerView;
     List<Items> list;
     ProgressBar progressBar;
     RequestQueue requestQueue;
-    private static String URL_PENDRIVES="https://colorpress.000webhostapp.com/vistaprint/Authentication/pendrives.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_pen_drive, container, false);
@@ -46,16 +43,23 @@ public class PenDrive extends Fragment {
         recyclerView.addItemDecoration(new SpacesItemDecoration(10,2));
         recyclerView.setNestedScrollingEnabled(false);
         list = new ArrayList<>();
-        loadItems();
+        switch (ItemsAdapter.item_name){
+            case "Pen Drives":
+                loadItems("https://colorpress.000webhostapp.com/vistaprint/Authentication/pendrives.php");
+                break;
+            case "Parker Pens":
+                loadItems("https://colorpress.000webhostapp.com/vistaprint/Authentication/parker_pens.php");
+                break;
+        }
         return view;
     }
-    public void loadItems(){
+    public void loadItems(String URL){
         Cache cache = new DiskBasedCache(getActivity().getCacheDir(),1024*1024*5);
         Network network = new BasicNetwork(new HurlStack());
         requestQueue = new RequestQueue(cache,network);
         requestQueue.start();
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PENDRIVES,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 response -> {
                     try {
                         JSONArray array = new JSONArray(response);

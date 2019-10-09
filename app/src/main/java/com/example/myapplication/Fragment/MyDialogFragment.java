@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -64,13 +65,32 @@ public class MyDialogFragment extends DialogFragment {
 
         s=(Spinner)v.findViewById(R.id.spinnerFont);
         show=v.findViewById(R.id.showB);
+        show=v.findViewById(R.id.showB);
         EnterName=v.findViewById(R.id.EnternameE);
         ShowName=v.findViewById(R.id.textSample);
         ok=v.findViewById(R.id.okieButton);
 
 
-
-
+        show.setOnTouchListener(new View.OnTouchListener() {
+           float lastX = 0,lastY =0;
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()) {
+                    case (MotionEvent.ACTION_DOWN):
+                        lastX = motionEvent.getX();
+                        lastY = motionEvent.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        float dx = motionEvent.getX()-lastX;
+                        float dy = motionEvent.getY()-lastY;
+                        float finalX = view.getX()+dx;
+                        float finalY = view.getY()+dy+view.getHeight();
+                        view.setY(finalY);
+                        break;
+                }
+                return true;
+            }
+        });
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
@@ -20,7 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.Custom_Item_Adapter;
 import com.example.myapplication.Helper.SpacesItemDecoration;
-import com.example.myapplication.ItemsAdapter;
+import com.example.myapplication.Adapter.ItemsAdapter;
 import com.example.myapplication.R;
 
 import org.json.JSONArray;

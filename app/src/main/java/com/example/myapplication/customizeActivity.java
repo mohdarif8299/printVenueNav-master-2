@@ -1,5 +1,4 @@
 package com.example.myapplication;
-
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,11 +7,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,18 +18,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.example.myapplication.Fragment.LoginFragment;
+import com.example.myapplication.Adapter.ItemsAdapter;
 import com.example.myapplication.Fragment.MyDialogFragment;
 import com.example.myapplication.Fragment.PreviewFragment;
 import com.example.myapplication.PreferenceManager.MyPreference;
 import com.google.android.material.snackbar.Snackbar;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
 public class customizeActivity extends AppCompatActivity implements MyDialogFragment.OninputListener {
 
     Button bc;
@@ -69,7 +63,7 @@ public class customizeActivity extends AppCompatActivity implements MyDialogFrag
                 PreviewFragment pf=new PreviewFragment(typeface);
                 Bundle b=new Bundle();
                 b.putString("TextView",in);
-               /* b.putString("TypeFace",typeface.toString());*/
+                /* b.putString("TypeFace",typeface.toString());*/
                 pf.setArguments(b);
                 pf.show(f1,"peviewFragment");
 

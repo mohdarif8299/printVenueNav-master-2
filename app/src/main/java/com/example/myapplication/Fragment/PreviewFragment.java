@@ -47,11 +47,11 @@ public class PreviewFragment extends DialogFragment {
         Bundle b=new Bundle();
         abc=getArguments().getString("TextView");
 
-       /* t= getArguments().getString("TypeFace");*/
+        /* t= getArguments().getString("TypeFace");*/
 
 
 
-        previewDisplay=v.findViewById(R.id.displayName2);
+      //  previewDisplay=v.findViewById(R.id.displayName2);
         Toast.makeText(getContext(),t+"hiiii",Toast.LENGTH_LONG).show();
 
         previewDisplay.setText(abc);
@@ -61,9 +61,7 @@ public class PreviewFragment extends DialogFragment {
 
     /*@Override
     public void sendInput(String input, Typeface tf) {
-
         previewDisplay.setText(input);
         previewDisplay.setTypeface(tf);
-
     }*/
 }

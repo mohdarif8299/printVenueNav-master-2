@@ -45,7 +45,7 @@ public class CartActivity extends AppCompatActivity {
     }
     @Override
     public boolean onSupportNavigateUp() {
-        Toast.makeText(this,"back pressed",Toast.LENGTH_LONG).show();
+      //  Toast.makeText(this,"back pressed",Toast.LENGTH_LONG).show();
         onBackPressed();
         return super.onSupportNavigateUp();
     }
@@ -58,7 +58,7 @@ public class CartActivity extends AppCompatActivity {
         recyclerView =findViewById(R.id.recyclerview1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.addItemDecoration(new SpacesItemDecoration(10,2));
+         recyclerView.addItemDecoration(new SpacesItemDecoration(10,2));
         recyclerView.setNestedScrollingEnabled(false);
         list = new ArrayList<>();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET_FROM_CART,
@@ -82,8 +82,14 @@ public class CartActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Error"+e.toString(),Toast.LENGTH_SHORT).show();
                     }
                 },error->
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show()
-        );
+                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show()) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("email", new MyPreference(getApplicationContext()).getEmail());
+                return params;
+            }
+        };
         stringRequest.setRetryPolicy(new RetryPolicy() {
             @Override
             public int getCurrentTimeout() {

@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -35,12 +34,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.myapplication.Adapter.CustomExpendableListAdapter;
+import com.example.myapplication.Adapter.ItemsAdapter;
 import com.example.myapplication.Fragment.CardFragment;
 import com.example.myapplication.Fragment.CardProduct;
 import com.example.myapplication.Fragment.Custom_Fragment;
 import com.example.myapplication.Fragment.HomeFragment;
-import com.example.myapplication.Fragment.PenDrive;
-import com.example.myapplication.Fragment.PensFragment;
+import com.example.myapplication.Fragment.ProductsFragments;
 import com.example.myapplication.Helper.FragmentnavigationManager;
 import com.example.myapplication.Interface.NavigationManager;
 import com.example.myapplication.PreferenceManager.MyPreference;
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     List<String> title;
     Context c=getBaseContext();
     Button button;
-    @Override
     public void onBackPressed() {
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.container);
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -81,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
 //        else if(f instanceof productCustomize){
 //            FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.container,new PensFragment());
+//            ft.replace(R.id.container,new ProductsFragment());
 //            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 //            ft.commit();
 //        }
@@ -91,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
-        else if (f instanceof PenDrive || f instanceof PensFragment){
+        else if (f instanceof ProductsFragments){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container,new HomeFragment());
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -99,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (f instanceof Custom_Fragment && ItemsAdapter.label.equals("GB")){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container,new PenDrive());
+            ft.replace(R.id.container,new ProductsFragments());
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
         else if (f instanceof Custom_Fragment&& ItemsAdapter.label.equals("Parker")){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container,new PensFragment());
+            ft.replace(R.id.container,new ProductsFragments());
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
@@ -242,13 +240,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     private void selectFirstItemAsDefault() {
-        if (navigationManager!=null){
+//        if (navigationManager!=null){
             FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
             HomeFragment homeFragment=new HomeFragment();
             fragmentTransaction.add(R.id.container,homeFragment);
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
-        }
+        //}
     }
 
     private void setUpDrawer() {
@@ -341,7 +339,6 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
