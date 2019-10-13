@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
 public class Items {
-    private String name,url,price;
+    private String name,url,price,category;
 
     public String getName() {
         return name;
@@ -27,9 +27,18 @@ public class Items {
         this.price = price;
     }
 
-    public Items(String name, String url, String price) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Items(String name, String url, String price, String category) {
         this.name = name;
         this.url = url;
         this.price = price;
+        this.category = category;
     }
 }

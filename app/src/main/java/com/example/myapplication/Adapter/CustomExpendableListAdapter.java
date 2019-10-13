@@ -32,27 +32,36 @@ public class CustomExpendableListAdapter extends BaseExpandableListAdapter {
     @Override
     public int getGroupCount() {
         return listitem.size();
-
-
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
 
         int re = 0;
-        if(listTittle.get(groupPosition).equals("Products For Office")){
-            re = 2;
+        if(listTittle.get(groupPosition).equals("Office Products")){
+            re = 5;
         }
-        if(listTittle.get(groupPosition).equals("Clothings")){
-            re = 3;
+        if(listTittle.get(groupPosition).equals("Clothing")){
+            re = 4;
         }
         if(listTittle.get(groupPosition).equals("Business Cards")){
-            re = 7;
-        }
-        if(listTittle.get(groupPosition).equals("Photo_Gifts")){
             re = 2;
         }
-
+        if(listTittle.get(groupPosition).equals("Photo Gifts")){
+            re = 2;
+        }
+        if(listTittle.get(groupPosition).equals("Office Supplies")){
+            re = 5;
+        }
+        if(listTittle.get(groupPosition).equals("Marketing Materials")){
+            re = 3;
+        }
+        if (listTittle.get(groupPosition).equals("Manage Account")){
+            re = 2;
+        }
+        if (listTittle.get(groupPosition).equals("Share And Feedback")){
+            re = 2;
+        }
         return re;
 
     }

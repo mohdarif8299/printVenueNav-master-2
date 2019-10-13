@@ -2,13 +2,14 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:id="@+id/main_view"
+    xmlns:android="http://schemas.android.com/apk/res/android">
          <androidx.core.widget.NestedScrollView
              android:layout_width="match_parent"
-             android:layout_height="match_parent">
+             android:layout_height="wrap_content">
              <LinearLayout
                  android:layout_width="match_parent"
-                 android:layout_height="match_parent"
+                 android:layout_height="wrap_content"
                  android:orientation="vertical">
                  <include layout="@layout/horizontal_scroll_items_layout"/>
                  <com.smarteist.autoimageslider.SliderLayout
@@ -17,13 +18,6 @@
                      android:clickable="true"
                      android:layout_alignParentTop="true"
                      android:id="@+id/imageSlider"/>
-                 <ProgressBar
-                     android:layout_width="50dp"
-                     android:layout_height="50dp"
-                     android:id="@+id/progress"
-                     android:visibility="gone"
-                     android:indeterminateTint="@color/colorPrimary"
-                     android:layout_gravity="center" />
                  <LinearLayout
                      android:layout_width="match_parent"
                      android:layout_height="match_parent"
@@ -87,7 +81,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="Shop By GIFTS"
+                         android:text="Shop By OFFICE SUPPLIES"
                          android:layout_marginLeft="10dp"
                          android:textSize="16dp" />
                      <LinearLayout android:layout_width="match_parent"
@@ -105,7 +99,7 @@
                      <TextView
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
-                         android:text="Shop By PHOTOS ALBUM "
+                         android:text="Shop By PHOTO GIFTS "
                          android:layout_marginLeft="10dp"
                          android:textSize="16dp" />
                      <LinearLayout android:layout_width="match_parent"
@@ -118,6 +112,42 @@
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:id="@+id/recyclerview5"
+                             />
+                     </LinearLayout>
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Shop By BUSINESS CARDS"
+                         android:layout_marginLeft="10dp"
+                         android:textSize="16dp" />
+                     <LinearLayout android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical"
+                         android:background="#f0f0f0"
+                         xmlns:android="http://schemas.android.com/apk/res/android">
+                         <androidx.recyclerview.widget.RecyclerView
+                             xmlns:android="http://schemas.android.com/apk/res/android"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/recyclerview6"
+                             />
+                     </LinearLayout>
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Shop By MARKETING MATERIALS "
+                         android:layout_marginLeft="10dp"
+                         android:textSize="16dp" />
+                     <LinearLayout android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="vertical"
+                         android:background="#f0f0f0"
+                         xmlns:android="http://schemas.android.com/apk/res/android">
+                         <androidx.recyclerview.widget.RecyclerView
+                             xmlns:android="http://schemas.android.com/apk/res/android"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:id="@+id/recyclerview7"
                              />
                      </LinearLayout>
                  </LinearLayout>

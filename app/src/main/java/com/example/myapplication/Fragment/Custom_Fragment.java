@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.myapplication.Adapter.Custom_Item_Adapter;
 import com.example.myapplication.Helper.SpacesItemDecoration;
 import com.example.myapplication.Adapter.ItemsAdapter;
+import com.example.myapplication.Items;
 import com.example.myapplication.R;
 
 import org.json.JSONArray;
@@ -34,7 +35,7 @@ public class Custom_Fragment extends Fragment {
     List<String> list;
     TextView item_name;
     ProgressBar progressBar;
-    String switchLabel="";
+    String urlToLoad="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_custom_, container, false);
@@ -46,20 +47,20 @@ public class Custom_Fragment extends Fragment {
         recyclerView.addItemDecoration(new SpacesItemDecoration(10,2));
         recyclerView.setNestedScrollingEnabled(false);
         list = new ArrayList<>();
-        switchLabel =  ItemsAdapter.label;
-        switch (switchLabel){
-            case "GB": loadItems("https://colorpress.000webhostapp.com/vistaprint/Authentication/custom_pendrives.php");
-            item_name.setText(ItemsAdapter.name);
-            break;
-            case "Parker": loadItems("https://colorpress.000webhostapp.com/vistaprint/Authentication/custom_parker_pens.php");
-                item_name.setText(ItemsAdapter.name);
-            break;
+        item_name.setText(ItemsAdapter.item_name);
+        if (ItemsAdapter.product_url==null){
+           Toast.makeText(getActivity(),"Something Went Wrong Try Again!!!",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            urlToLoad = ItemsAdapter.item_url;
+            urlToLoad.trim();
+            loadItems();
         }
         return view;
     }
-    public void loadItems(String URL){
+    public void loadItems(){
         progressBar.setVisibility(View.VISIBLE);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlToLoad,
                 response -> {
                     try {
                         JSONArray array = new JSONArray(response);

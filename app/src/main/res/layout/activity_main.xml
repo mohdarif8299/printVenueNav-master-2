@@ -4,7 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.example.myapplication.MainActivity">
 
       <androidx.core.widget.NestedScrollView
           android:layout_width="match_parent"
@@ -26,4 +26,5 @@
         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
         ></ExpandableListView>
+
 </androidx.drawerlayout.widget.DrawerLayout>

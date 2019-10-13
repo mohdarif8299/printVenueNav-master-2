@@ -1,59 +1,58 @@
-package com.example.myapplication;
+ package com.example.myapplication;
+ import android.Manifest;
+ import android.annotation.TargetApi;
+ import android.content.Context;
+ import android.content.DialogInterface;
+ import android.content.Intent;
+ import android.content.SharedPreferences;
+ import android.content.pm.PackageManager;
+ import android.content.res.Configuration;
+ import android.database.Cursor;
+ import android.os.Build;
+ import android.os.Bundle;
+ import android.os.Environment;
+ import android.provider.ContactsContract;
+ import android.view.Menu;
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.ExpandableListAdapter;
+ import android.widget.ExpandableListView;
+ import android.widget.LinearLayout;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.appcompat.app.ActionBarDrawerToggle;
+ import androidx.appcompat.app.AlertDialog;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.core.app.ActivityCompat;
+ import androidx.core.content.ContextCompat;
+ import androidx.core.view.GravityCompat;
+ import androidx.drawerlayout.widget.DrawerLayout;
+ import androidx.fragment.app.Fragment;
+ import androidx.fragment.app.FragmentTransaction;
+ import com.example.myapplication.Adapter.CustomExpendableListAdapter;
+ import com.example.myapplication.Adapter.ItemsAdapter;
+ import com.example.myapplication.Fragment.CardFragment;
+ import com.example.myapplication.Fragment.CardProduct;
+ import com.example.myapplication.Fragment.Custom_Fragment;
+ import com.example.myapplication.Fragment.HomeFragment;
+ import com.example.myapplication.Fragment.ProductsFragments;
+ import com.example.myapplication.Helper.FragmentnavigationManager;
+ import com.example.myapplication.Interface.NavigationManager;
+ import com.example.myapplication.PreferenceManager.MyPreference;
 
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.database.Cursor;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.ContactsContract;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.Toast;
+ import org.json.JSONObject;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.example.myapplication.Adapter.CustomExpendableListAdapter;
-import com.example.myapplication.Adapter.ItemsAdapter;
-import com.example.myapplication.Fragment.CardFragment;
-import com.example.myapplication.Fragment.CardProduct;
-import com.example.myapplication.Fragment.Custom_Fragment;
-import com.example.myapplication.Fragment.HomeFragment;
-import com.example.myapplication.Fragment.ProductsFragments;
-import com.example.myapplication.Helper.FragmentnavigationManager;
-import com.example.myapplication.Interface.NavigationManager;
-import com.example.myapplication.PreferenceManager.MyPreference;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
+ import java.io.File;
+ import java.io.FileWriter;
+ import java.io.IOException;
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.TreeMap;
 public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -72,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> title;
     Context c=getBaseContext();
     Button button;
+    @Override
     public void onBackPressed() {
         Fragment f = getSupportFragmentManager().findFragmentById(R.id.container);
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         }
 //        else if(f instanceof productCustomize){
 //            FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.container,new ProductsFragment());
+//            ft.replace(R.id.container,new PensFragment());
 //            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 //            ft.commit();
 //        }
@@ -95,19 +95,14 @@ public class MainActivity extends AppCompatActivity {
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
-        else if (f instanceof Custom_Fragment && ItemsAdapter.label.equals("GB")){
+        else if(f instanceof Custom_Fragment){
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.container,new ProductsFragments());
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         }
-        else if (f instanceof Custom_Fragment&& ItemsAdapter.label.equals("Parker")){
-            FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.container,new ProductsFragments());
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
+
         }
-    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
@@ -124,9 +119,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
     public void askForContactPermission() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -147,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     builder.show();
                 } else {
-                              ActivityCompat.requestPermissions(this,
+                    ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.READ_CONTACTS},
                             PERMISSION_REQUEST_CONTACT);
                 }
@@ -165,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
             vdfDirectory.mkdirs();
         }
         vcfFile = new File(vdfDirectory, "android_"+ Calendar.getInstance().getTimeInMillis() + ".vcf");
-       // Toast.makeText(this,vcfFile+"",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,vdfDirectory.getPath()+"",Toast.LENGTH_LONG).show();
+
         try {
             fw = new FileWriter(vcfFile);
             fw.write("BEGIN:VCARD\r\n");
@@ -182,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 fw.write("TEL;TYPE=WORK,VOICE:" + phoneNumber + "\r\n");
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(this,"Contact ni hua",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"No Contact ",Toast.LENGTH_LONG).show();
             }
         }
         try {
@@ -192,7 +186,6 @@ public class MainActivity extends AppCompatActivity {
         }
         phones.close();
     }
-    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         expandableListView = findViewById(R.id.navlist);
         navigationManager = FragmentnavigationManager.getmInstance(this);
         askForContactPermission();
-        initItems();
         View listHeaderView = getLayoutInflater().inflate(R.layout.nav_header,null,false);
         expandableListView.addHeaderView(listHeaderView);
         getData();
@@ -218,6 +210,15 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("ColorPress");
         TextView sign = findViewById(R.id.signin);
+        LinearLayout home_layout = findViewById(R.id.home);
+        home_layout.setOnClickListener(v1->{
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+            FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+            HomeFragment homeFragment=new HomeFragment();
+            fragmentTransaction.replace(R.id.container,homeFragment);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            fragmentTransaction.commit();
+        });
         if(new MyPreference(getApplicationContext()).isUserLogedOut()) {
             sign.setOnClickListener(v->{
                 Intent intent = new Intent(MainActivity.this, LoginSignUpMain.class);
@@ -240,13 +241,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
     private void selectFirstItemAsDefault() {
-//        if (navigationManager!=null){
+        if (navigationManager!=null){
             FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
             HomeFragment homeFragment=new HomeFragment();
-            fragmentTransaction.add(R.id.container,homeFragment);
-//            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            fragmentTransaction.replace(R.id.container,homeFragment);
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             fragmentTransaction.commit();
-        //}
+        }
     }
 
     private void setUpDrawer() {
@@ -285,42 +286,76 @@ public class MainActivity extends AppCompatActivity {
         expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                mDrawerLayout.closeDrawer(GravityCompat.START);
+
+                String key = (String) lstChild.keySet().toArray()[groupPosition];
+                List<String> list = lstChild.get(key);
+                if(list.get(childPosition).equals("Logout")) {
+                    SharedPreferences preferences =getSharedPreferences("LoginDetails",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.commit();
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    finish();
+                }
                 return false;
             }
         });
     }
     private void getData(){
-        title = Arrays.asList("Products For Office","Photo Gifts","Clothings","Business Cards","Home");
+        title = new ArrayList<>();
+        title.add("Office Products");
+        title.add("Business Cards");
+        title.add("Clothing");
+        title.add("Photo Gifts");
+        title.add("Office Supplies");
+        title.add("Marketing Materials");
+        List<String> manageAccount = new ArrayList<>();
+        if (new MyPreference(getApplicationContext()).isUserLogedOut()){
+            title.add("Share And Feedback");
+            manageAccount.add("Share App");
+            manageAccount.add("Feddback");
+        }
+        else {
+            title.add("Manage Account");
+            manageAccount.add("Logout");
+            manageAccount.add("Your Orders");
+        }
         List<String> productForOffice = new ArrayList();
-        productForOffice.add("Stationary");
-        productForOffice.add("Diaries & Organizers");
-        List<String> Photo_Gifts = new ArrayList();
-        Photo_Gifts.add("Calender");
-        Photo_Gifts.add("Photo Album");
-        List<String> Alothings = new ArrayList();
-        Alothings.add("Men's Clothings");
-        Alothings.add("Sweatshirts");
+        productForOffice.add("Letterheads");
+        productForOffice.add("Notebooks");
+        productForOffice.add("Labels");
+        productForOffice.add("Brochures");
+        productForOffice.add("Stamps");
+        List<String> photoGifts = new ArrayList();
+        photoGifts.add("Calender");
+        photoGifts.add("Photo Album");
+        List<String> clothings = new ArrayList();
+        clothings.add("T-Shirts");
+        clothings.add("Shirts");
+        clothings.add("Bags");
+        clothings.add("Caps");
+        List<String> officeSupplies = new ArrayList();
+        officeSupplies.add("Mugs");
+        officeSupplies.add("Mouse Pads");
+        officeSupplies.add("USB Flash Drives");
+        officeSupplies.add("Keychanis");
+        officeSupplies.add("Pens");
         List<String> businessCard = new ArrayList();
-      businessCard.add("Classical Business Cards");
-        businessCard.add("Premium Business Card");
-        businessCard.add("Mini Business Card");
-        businessCard.add("Rounded Corner Business Card");
-        businessCard.add("Vertical Corner Business Card");
-        businessCard.add("Square Business Card");
-        businessCard.add("Folded Business Card");
-        List<String> Clothings = Arrays.asList("Men's Clothings","Sweatshirts","Wallets");
+        businessCard.add("Visiting Cards");
+        businessCard.add("Invitation Cards");
+        List<String> marketingMaterials = new ArrayList();
+        marketingMaterials.add("Posters");
+        marketingMaterials.add("Banners");
+        marketingMaterials.add("Stickers");
         lstChild = new TreeMap<>();
         lstChild.put(title.get(0),productForOffice);
-        lstChild.put(title.get(1),Photo_Gifts);
-        lstChild.put(title.get(2),Clothings);
-        lstChild.put(title.get(3),businessCard);
-        lstChild.put(title.get(4),title);
+        lstChild.put(title.get(1),businessCard);
+        lstChild.put(title.get(2),clothings);
+        lstChild.put(title.get(3),photoGifts);
+        lstChild.put(title.get(4),officeSupplies);
+        lstChild.put(title.get(5),marketingMaterials);
+        lstChild.put(title.get(6),manageAccount);
         lstTitle = new ArrayList<>(lstChild.keySet());
-    }
-
-    private void initItems() {
-        items = new String[]{"Android Programming","C","C++","java","java","java","java"};
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -333,12 +368,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 /*Toast.makeText(getBaseContext(),"cart",Toast.LENGTH_LONG).show();*/
-                startActivity(new Intent(getBaseContext(),CartActivity.class));
+                startActivity(new Intent(getBaseContext(), CartActivity.class));
                 return true;
             }
         });
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -348,3 +384,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
+

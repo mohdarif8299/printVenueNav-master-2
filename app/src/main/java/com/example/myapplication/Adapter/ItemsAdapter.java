@@ -24,7 +24,7 @@ import java.util.List;
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder> {
     private Context context;
     private List<Items> list;
-    public  static  String label,name,item_name;
+    public  static  String item_name,product_url,item_category,item_url;
     public ItemsAdapter(Context context,List list){
         this.context= context;
         this.list = list;
@@ -46,28 +46,42 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemsViewHol
         itemViewHolder.item_name.setText(items.getName());
         itemViewHolder.item_price.setText("Rs "+items.getPrice()+".00");
         itemViewHolder.linearLayout.setOnClickListener(v->{
-            if(items.getName().equals("Pen Drives")) {
-                item_name = items.getName();
-                fragmentTransaction.replace(com.example.myapplication.R.id.container, new ProductsFragments());
-                fragmentTransaction.commit();
+            item_name = items.getName();
+            item_category = items.getCategory();
+            switch (items.getName()){
+                case "T-Shirts":
+                        product_url = "https://colorpress.000webhostapp.com/vistaprint/Authentication/t_shirts.php";
+                        fragmentTransaction.replace(com.example.myapplication.R.id.container, new ProductsFragments());
+                        fragmentTransaction.commit();
+                        break;
+                        case "Embroided Polo T-Shirt - White":
+                            item_url = "https://colorpress.000webhostapp.com/vistaprint/Authentication/Embroided_Polo_Tshirt_White.php";
+                            fragmentTransaction.replace(com.example.myapplication.R.id.container, new Custom_Fragment());
+                            fragmentTransaction.commit();
+                            break;
             }
-            else if (items.getName().contains("GB")) {
-                label = "GB";
-                name = items.getName();
-                fragmentTransaction.replace(com.example.myapplication.R.id.container, new Custom_Fragment());
-                fragmentTransaction.commit();
-            }
-           if (items.getName().equals("Parker Pens")) {
-               item_name = items.getName();
-                fragmentTransaction.replace(com.example.myapplication.R.id.container, new ProductsFragments());
-                fragmentTransaction.commit();
-            }
-            else if (items.getName().contains("Parker")) {
-                label = "Parker";
-                name = items.getName();
-                fragmentTransaction.replace(com.example.myapplication.R.id.container, new Custom_Fragment());
-                fragmentTransaction.commit();
-            }
+//            if(items.getName().equals("Pen Drives")) {
+//                item_name = items.getName();
+//                fragmentTransaction.replace(com.example.myapplication.R.id.container, new ProductsFragments());
+//                fragmentTransaction.commit();
+//            }
+//            else if (items.getName().contains("GB")) {
+//                label = "GB";
+//                name = items.getName();
+//                fragmentTransaction.replace(com.example.myapplication.R.id.container, new Custom_Fragment());
+//                fragmentTransaction.commit();
+//            }
+//           if (items.getName().equals("Parker Pens")) {
+//               item_name = items.getName();
+//                fragmentTransaction.replace(com.example.myapplication.R.id.container, new ProductsFragments());
+//                fragmentTransaction.commit();
+//            }
+//            else if (items.getName().contains("Parker")) {
+//                label = "Parker";
+//                name = items.getName();
+//                fragmentTransaction.replace(com.example.myapplication.R.id.container, new Custom_Fragment());
+//                fragmentTransaction.commit();
+//            }
         });
         itemViewHolder.progressBar.setVisibility(View.GONE);
     }
